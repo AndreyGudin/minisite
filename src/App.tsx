@@ -1,15 +1,25 @@
+import { useState } from "react";
 import "./App.css";
 import { BackgroundVideo } from "./components/BackgroundVideo";
 import { Banner } from "./components/Banner";
 import { ContentProvider } from "./components/ContentProvider";
+import { ComponentContext } from "./lib/context/componentContext";
+import { Component, ComponentState } from "./lib/types/ComponentState";
 
 function App() {
+  const [component, setComponent] = useState<Component>("banner");
+  const state: ComponentState = {
+    component,
+    setComponent,
+  };
   return (
     <>
-      <ContentProvider>
-        <Banner />
-      </ContentProvider>
-      <BackgroundVideo />
+      <ComponentContext.Provider value={state}>
+        <ContentProvider>
+          {component === "banner" && <Banner />}
+        </ContentProvider>
+        <BackgroundVideo />
+      </ComponentContext.Provider>
     </>
   );
 }
