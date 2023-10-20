@@ -8,7 +8,7 @@ interface BackgroundVideoProps {
 export const BackgroundVideo: FC<BackgroundVideoProps> = memo(
   function BackgroundVideo({ className = "" }: BackgroundVideoProps) {
     return (
-      <div className={`${className}`}>
+      <div className={`${className} absolute top-0 left-0 z-10`}>
         <video
           width={1280}
           height={720}
