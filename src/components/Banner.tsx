@@ -10,7 +10,7 @@ export const Banner: FC<BannerProps> = memo(function Banner({
 }: BannerProps) {
   return (
     <div
-      className={`${className} w-[250px] h-[357px] flex flex-col gap-5 items-center bg-main px-[10px] pt-[20px] pb-[10px] z-20`}
+      className={`${className} w-[250px] h-[357px] flex flex-col gap-5 items-center bg-main px-[10px] pt-[20px] pb-[10px] z-20 ml-auto`}
     >
       <span className='text-base uppercase text-center leading-4'>
         ИСПОЛНИТЕ МЕЧТУ ВАШЕГО МАЛЫША!
