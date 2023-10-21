@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import type { FC } from "react";
+import { ComponentContext } from "../lib/context/componentContext";
 
 interface PhoneInputProps {
   className?: string;
@@ -10,23 +11,27 @@ export const PhoneInput: FC<PhoneInputProps> = ({
   value,
   className = "",
 }: PhoneInputProps) => {
-  const [phoneNumber, setPhone] = useState("+7(___)___-__-__");
+  const { currentPhone, setCurrentPhone } = useContext(ComponentContext);
 
   useEffect(() => {
-    if (value && phoneNumber.includes("_")) {
-      const currentPhone = phoneNumber;
+    if ((value && currentPhone.includes("_")) || value?.includes("_")) {
+      const phone = currentPhone;
       let newString = "";
       const currentValues = value?.split("");
       currentValues?.forEach((value) => {
-        newString = currentPhone.replace("_", value);
+        const match = phone.match(/\d(?=\D*$)/);
+        console.log(phone);
+        if (value === "_" && match?.index !== 1) {
+          newString = phone.replace(/\d(?=\D*$)/, "_");
+        } else newString = phone.replace("_", value);
       });
-      setPhone(newString);
+      setCurrentPhone(newString);
     }
   }, [value]);
 
   return (
     <div className={`${className}`}>
-      <div className='text-[32px] font-bold'>{phoneNumber}</div>
+      <div className='text-[32px] font-bold'>{currentPhone}</div>
     </div>
   );
 };

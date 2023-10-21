@@ -1,5 +1,6 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import type { FC } from "react";
+import { ComponentContext } from "../lib/context/componentContext";
 
 interface PhoneKeyboardProps {
   className?: string;
@@ -8,6 +9,7 @@ interface PhoneKeyboardProps {
 
 export const PhoneKeyboard: FC<PhoneKeyboardProps> = memo(
   function PhoneKeyboard({ className = "", onClick }: PhoneKeyboardProps) {
+    const { currentPhone } = useContext(ComponentContext);
     const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Стереть", "0"];
     return (
       <div
@@ -18,8 +20,12 @@ export const PhoneKeyboard: FC<PhoneKeyboardProps> = memo(
           return (
             <button
               key={key}
-              onClick={() => onClick(key)}
-              className='text-base px-[28px] py-[10px] border-[2px] border-black hover:bg-black hover:text-white active:bg-slate-900'
+              disabled={
+                currentPhone.split("")[currentPhone.length - 1] !== "_" &&
+                key !== "Стереть"
+              }
+              onClick={() => onClick(key === "Стереть" ? "_" : key)}
+              className='text-base px-[28px] py-[10px] border-[2px] border-black hover:bg-black hover:text-white active:bg-slate-900 disabled:bg-slate-500 disabled:hover:text-black'
             >
               <span className={`block ${width} h-[28px]`}>{key}</span>
             </button>

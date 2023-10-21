@@ -5,28 +5,24 @@ import { Banner } from "./components/Banner";
 import { ContentProvider } from "./components/ContentProvider";
 import { ComponentContext } from "./lib/context/componentContext";
 import { Component, ComponentState } from "./lib/types/ComponentState";
-import { PhoneInput } from "./components/PhoneInput";
-import { PhoneKeyboard } from "./components/PhoneKeyboard";
+import { PhoneChecker } from "./components/PhoneChecker";
 
 function App() {
   const [component, setComponent] = useState<Component>("banner");
-  const [phone, setPhone] = useState("");
+  const [currentPhone, setCurrentPhone] = useState("+7(___)___-__-__");
   const state: ComponentState = {
     component,
     setComponent,
-  };
-
-  const handleClick = (value: string) => {
-    setPhone((state) => state + value);
+    currentPhone,
+    setCurrentPhone,
   };
 
   return (
     <>
       <ComponentContext.Provider value={state}>
         <ContentProvider>
-          {component === "banner" && <Banner />}
-          <PhoneInput value={phone} />
-          <PhoneKeyboard onClick={handleClick} />
+          {/* {component === "banner" && <Banner />} */}
+          <PhoneChecker />
         </ContentProvider>
         <BackgroundVideo />
       </ComponentContext.Provider>
