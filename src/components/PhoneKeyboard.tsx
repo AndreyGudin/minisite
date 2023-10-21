@@ -12,9 +12,7 @@ export const PhoneKeyboard: FC<PhoneKeyboardProps> = memo(
     const { currentPhone } = useContext(ComponentContext);
     const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Стереть", "0"];
     return (
-      <div
-        className={`${className} w-[284px] h-[278px] flex gap-[10px] flex-wrap`}
-      >
+      <div className={`${className} w-[284px] py-5 flex gap-[10px] flex-wrap`}>
         {keys.map((key) => {
           const width = key === "Стереть" ? "min-w-[126px]" : "min-w-[28px]";
           return (

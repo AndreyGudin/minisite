@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 import { BackgroundVideo } from "./components/BackgroundVideo";
-import { Banner } from "./components/Banner";
 import { ContentProvider } from "./components/ContentProvider";
 import { ComponentContext } from "./lib/context/componentContext";
 import { Component, ComponentState } from "./lib/types/ComponentState";

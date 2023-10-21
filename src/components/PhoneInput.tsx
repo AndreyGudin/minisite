@@ -20,7 +20,6 @@ export const PhoneInput: FC<PhoneInputProps> = ({
       const currentValues = value?.split("");
       currentValues?.forEach((value) => {
         const match = phone.match(/\d(?=\D*$)/);
-        console.log(phone);
         if (value === "_" && match?.index !== 1) {
           newString = phone.replace(/\d(?=\D*$)/, "_");
         } else newString = phone.replace("_", value);
