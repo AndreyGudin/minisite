@@ -6,4 +6,6 @@ export const ComponentContext = createContext<ComponentState>({
   setComponent: () => {},
   currentPhone: "+7(___)___-__-__",
   setCurrentPhone: () => {},
+  valid: true,
+  setValid: () => {},
 });

@@ -11,11 +11,15 @@ import { ClosePhoneChecker } from "./components/ClosePhoneChecker";
 function App() {
   const [component, setComponent] = useState<Component>("banner");
   const [currentPhone, setCurrentPhone] = useState("+7(___)___-__-__");
+  const [valid, setValid] = useState(true);
+
   const state: ComponentState = {
     component,
     setComponent,
     currentPhone,
     setCurrentPhone,
+    valid,
+    setValid,
   };
 
   return (

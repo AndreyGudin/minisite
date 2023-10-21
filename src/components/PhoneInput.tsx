@@ -5,13 +5,17 @@ import { ComponentContext } from "../lib/context/componentContext";
 interface PhoneInputProps {
   className?: string;
   value?: string;
+  valid?: boolean;
 }
 
 export const PhoneInput: FC<PhoneInputProps> = ({
   value,
+  valid = true,
   className = "",
 }: PhoneInputProps) => {
   const { currentPhone, setCurrentPhone } = useContext(ComponentContext);
+
+  const textColor = valid ? "text-black" : "text-red-600";
 
   useEffect(() => {
     if ((value && currentPhone.includes("_")) || value?.includes("_")) {
@@ -29,8 +33,8 @@ export const PhoneInput: FC<PhoneInputProps> = ({
   }, [value]);
 
   return (
-    <div className={`${className}`}>
-      <div className='text-[32px] font-bold'>{currentPhone}</div>
+    <div className={`${className} text-[32px] font-bold`}>
+      <span className={`${textColor}`}>{currentPhone}</span>
     </div>
   );
 };

@@ -5,13 +5,15 @@ import { Checkbox } from "./checkbox";
 interface AgreementCheckboxProps {
   className?: string;
   onChecked: (value: boolean) => void;
+  checked?: boolean;
 }
 
 export const AgreementCheckbox: FC<AgreementCheckboxProps> = memo(
-  ({ onChecked, className = "" }: AgreementCheckboxProps) => {
+  ({ onChecked, checked = false, className = "" }: AgreementCheckboxProps) => {
     return (
       <div className={`${className} flex gap-[20px]`}>
         <Checkbox
+          checked={checked}
           onCheckedChange={(checked) => {
             if (checked) onChecked(true);
             else onChecked(false);
