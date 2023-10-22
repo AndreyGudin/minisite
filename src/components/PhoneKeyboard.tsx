@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect, useRef, useState } from "react";
+import { memo, useContext } from "react";
 import type { FC } from "react";
 import { ComponentContext } from "../lib/context/componentContext";
 
@@ -15,14 +15,7 @@ export const PhoneKeyboard: FC<PhoneKeyboardProps> = memo(
     refs,
   }: PhoneKeyboardProps) {
     const { currentPhone } = useContext(ComponentContext);
-    // const [pressed, setPressed] = useState(0);
     const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Стереть", "0"];
-    // const buttonRefs = useRef<HTMLButtonElement[] | null>([]);
-
-    // useEffect(() => {
-    //   const next = buttonRefs.current![pressed];
-    //   if (next) next.focus();
-    // }, [pressed]);
 
     return (
       <div className={`${className} w-[284px] py-5 flex gap-[10px] flex-wrap`}>
@@ -30,21 +23,6 @@ export const PhoneKeyboard: FC<PhoneKeyboardProps> = memo(
           const width = key === "Стереть" ? "min-w-[126px]" : "min-w-[28px]";
           return (
             <button
-              // onKeyDown={(e) => {
-              //   if (e.key === "ArrowRight") {
-              //     setPressed((state) => {
-              //       if (state === buttonRefs.current?.length) return 0;
-              //       return state + 1;
-              //     });
-              //   }
-              //   if (e.key === "ArrowLeft") {
-              //     setPressed((state) => {
-              //       if (state === 0 && buttonRefs.current?.length)
-              //         return buttonRefs.current?.length - 1;
-              //       return state - 1;
-              //     });
-              //   }
-              // }}
               key={key}
               ref={refs![i]}
               disabled={
