@@ -8,10 +8,11 @@ import { PhoneCheckingResponse } from "../lib/types/PhoneCheckingResponse";
 
 interface PhoneCheckerProps {
   className?: string;
+  refs: React.RefObject<HTMLButtonElement>[];
 }
 
 export const PhoneChecker: FC<PhoneCheckerProps> = memo(
-  ({ className = "" }: PhoneCheckerProps) => {
+  ({ className = "", refs }: PhoneCheckerProps) => {
     const [phone, setPhone] = useState("");
     const [agreed, setAgreed] = useState(false);
 
@@ -36,7 +37,6 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
           return "";
         })
         .join("");
-      console.log(phoneToValidate);
       fetch(
         `http://apilayer.net/api/validate?access_key=fb5b33e5f65657455a579b9d41effee4&number=${phoneToValidate}&country_code=RU&format=1`
       )
@@ -53,7 +53,7 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
         <span className='text-[14px]'>
           и с Вами свяжется наш менеждер для дальнейшей консультации
         </span>
-        <PhoneKeyboard onClick={handleClick} />
+        <PhoneKeyboard refs={refs} onClick={handleClick} />
         {valid ? (
           <AgreementCheckbox onChecked={handleCheck} checked={agreed} />
         ) : (
@@ -62,6 +62,7 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
           </span>
         )}
         <button
+          ref={refs[11]}
           onClick={handleValidate}
           disabled={!agreed || currentPhone.endsWith("_") || !valid}
           className='w-full h-[52px] text-main bg-black cursor-pointer active:bg-slate-900 disabled:bg-main disabled:border disabled:cursor-not-allowed disabled:border-[#4E4E4E] disabled:text-[#4E4E4E]'
