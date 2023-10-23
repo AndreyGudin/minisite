@@ -1,4 +1,4 @@
-import { useState, createRef } from "react";
+import { useState, createRef, useCallback, useEffect } from "react";
 import "./App.css";
 import { BackgroundVideo } from "./components/BackgroundVideo";
 import { ContentProvider } from "./components/ContentProvider";
@@ -10,7 +10,7 @@ import { ClosePhoneChecker } from "./components/ClosePhoneChecker";
 import { useArrowControls } from "./lib/hooks/useArrowControls";
 
 function App() {
-  const [component, setComponent] = useState<Component>("banner");
+  const [component, setComponent] = useState<Component>("start");
   const [currentPhone, setCurrentPhone] = useState("+7(___)___-__-__");
   const [valid, setValid] = useState(true);
   const arrRefs = new Array(13)
@@ -27,13 +27,39 @@ function App() {
     setValid,
   };
 
+  const handleBannerClick = useCallback(() => {
+    setComponent("numberConfirmation");
+  }, []);
+
+  const handleClosePhoneCheckerClick = useCallback(() => {
+    setComponent("banner");
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setComponent("banner");
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <>
       <ComponentContext.Provider value={state}>
         <ContentProvider>
-          {/* {component === "banner" && <Banner />} */}
-          <PhoneChecker refs={arrRefs} />
-          <ClosePhoneChecker ref={arrRefs[12]} />
+          {component === "banner" && <Banner onClick={handleBannerClick} />}
+          {component === "numberConfirmation" && (
+            <>
+              <PhoneChecker refs={arrRefs} />
+              <ClosePhoneChecker
+                onClick={handleClosePhoneCheckerClick}
+                ref={arrRefs[12]}
+              />
+            </>
+          )}
+          {component === "final" && <div>Final</div>}
         </ContentProvider>
         <BackgroundVideo />
       </ComponentContext.Provider>

@@ -18,7 +18,8 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
     const [agreed, setAgreed] = useState(false);
     usePhoneInputsControls({ callback: setPhone });
 
-    const { currentPhone, valid, setValid } = useContext(ComponentContext);
+    const { currentPhone, valid, setValid, setComponent } =
+      useContext(ComponentContext);
 
     const handleClick = (value: string) => {
       setPhone((state) => state + value);
@@ -43,7 +44,10 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
         `http://apilayer.net/api/validate?access_key=fb5b33e5f65657455a579b9d41effee4&number=${phoneToValidate}&country_code=RU&format=1`
       )
         .then((res) => res.json())
-        .then((result: PhoneCheckingResponse) => setValid(result.valid));
+        .then((result: PhoneCheckingResponse) => {
+          setValid(result.valid);
+          if (valid) setComponent("final");
+        });
     };
 
     return (

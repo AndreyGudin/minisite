@@ -7,4 +7,4 @@ export interface ComponentState {
   setValid: (value: boolean) => void;
 }
 
-export type Component = "banner" | "numberConfirmation" | "final";
+export type Component = "start" | "banner" | "numberConfirmation" | "final";

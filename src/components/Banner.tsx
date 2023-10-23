@@ -3,10 +3,12 @@ import type { FC } from "react";
 
 interface BannerProps {
   className?: string;
+  onClick?: () => void;
 }
 
 export const Banner: FC<BannerProps> = memo(function Banner({
   className = "",
+  onClick = () => {},
 }: BannerProps) {
   return (
     <div
@@ -26,7 +28,7 @@ export const Banner: FC<BannerProps> = memo(function Banner({
         <br /> или нажмите ОК
       </span>
       <button
-        onClick={() => console.log("click")}
+        onClick={onClick}
         className='w-[156px] h-[52px] text-main bg-black cursor-pointer'
       >
         OK
