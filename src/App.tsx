@@ -1,4 +1,4 @@
-import { useState, createRef, useCallback, useEffect } from "react";
+import { useState, createRef, useCallback } from "react";
 import "./App.css";
 import { BackgroundVideo } from "./components/BackgroundVideo";
 import { ContentProvider } from "./components/ContentProvider";
@@ -17,7 +17,7 @@ function App() {
   const [currentPhone, setCurrentPhone] = useState("+7(___)___-__-__");
   const [valid, setValid] = useState(true);
   const [play, setPlay] = useState(true);
-
+  console.log("rerender");
   const arrRefs = new Array(13)
     .fill(null)
     .map(() => createRef<HTMLButtonElement>());
