@@ -14,6 +14,8 @@ function App() {
   const [component, setComponent] = useState<Component>("start");
   const [currentPhone, setCurrentPhone] = useState("+7(___)___-__-__");
   const [valid, setValid] = useState(true);
+  const [play, setPlay] = useState(true);
+
   const arrRefs = new Array(13)
     .fill(null)
     .map(() => createRef<HTMLButtonElement>());
@@ -32,10 +34,12 @@ function App() {
 
   const handleBannerClick = useCallback(() => {
     setComponent("numberConfirmation");
+    setPlay(false);
   }, []);
 
   const handleClosePhoneCheckerClick = useCallback(() => {
     setComponent("banner");
+    setPlay(true);
   }, []);
 
   return (
@@ -54,7 +58,7 @@ function App() {
           )}
           {component === "final" && <div>Final</div>}
         </ContentProvider>
-        <BackgroundVideo />
+        <BackgroundVideo play={play} />
       </ComponentContext.Provider>
     </>
   );
