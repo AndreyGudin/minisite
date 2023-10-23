@@ -5,6 +5,7 @@ import { PhoneKeyboard } from "./PhoneKeyboard";
 import { AgreementCheckbox } from "./AgreementCheckbox";
 import { ComponentContext } from "../lib/context/componentContext";
 import { PhoneCheckingResponse } from "../lib/types/PhoneCheckingResponse";
+import { usePhoneInputsControls } from "../lib/hooks/usePhoneInputsControls";
 
 interface PhoneCheckerProps {
   className?: string;
@@ -15,6 +16,7 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
   ({ className = "", refs }: PhoneCheckerProps) => {
     const [phone, setPhone] = useState("");
     const [agreed, setAgreed] = useState(false);
+    usePhoneInputsControls({ callback: setPhone });
 
     const { currentPhone, valid, setValid } = useContext(ComponentContext);
 

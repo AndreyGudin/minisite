@@ -1,4 +1,4 @@
-import { useState, createRef, useEffect } from "react";
+import { useState, createRef } from "react";
 import "./App.css";
 import { BackgroundVideo } from "./components/BackgroundVideo";
 import { ContentProvider } from "./components/ContentProvider";
@@ -18,7 +18,6 @@ function App() {
     .map(() => createRef<HTMLButtonElement>());
 
   useArrowControls({ arrRefs });
-
   const state: ComponentState = {
     component,
     setComponent,
