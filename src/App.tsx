@@ -8,6 +8,7 @@ import { PhoneChecker } from "./components/PhoneChecker";
 import { Banner } from "./components/Banner";
 import { ClosePhoneChecker } from "./components/ClosePhoneChecker";
 import { useArrowControls } from "./lib/hooks/useArrowControls";
+import { useDelay } from "./lib/hooks/useDelay";
 
 function App() {
   const [component, setComponent] = useState<Component>("start");
@@ -17,7 +18,6 @@ function App() {
     .fill(null)
     .map(() => createRef<HTMLButtonElement>());
 
-  useArrowControls({ arrRefs });
   const state: ComponentState = {
     component,
     setComponent,
@@ -26,6 +26,9 @@ function App() {
     valid,
     setValid,
   };
+  useArrowControls({ arrRefs });
+
+  useDelay({ callback: () => setComponent("banner"), delay: 5000 });
 
   const handleBannerClick = useCallback(() => {
     setComponent("numberConfirmation");
@@ -33,16 +36,6 @@ function App() {
 
   const handleClosePhoneCheckerClick = useCallback(() => {
     setComponent("banner");
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setComponent("banner");
-    }, 5000);
-
-    return () => {
-      clearTimeout(timer);
-    };
   }, []);
 
   return (
