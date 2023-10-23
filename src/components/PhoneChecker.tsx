@@ -16,10 +16,10 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
   ({ className = "", refs }: PhoneCheckerProps) => {
     const [phone, setPhone] = useState("");
     const [agreed, setAgreed] = useState(false);
-    usePhoneInputsControls({ callback: setPhone });
-
     const { currentPhone, valid, setValid, setComponent } =
       useContext(ComponentContext);
+
+    usePhoneInputsControls({ callback: setPhone });
 
     const handleClick = (value: string) => {
       setPhone((state) => state + value);

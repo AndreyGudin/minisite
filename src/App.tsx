@@ -9,6 +9,8 @@ import { Banner } from "./components/Banner";
 import { ClosePhoneChecker } from "./components/ClosePhoneChecker";
 import { useArrowControls } from "./lib/hooks/useArrowControls";
 import { useDelay } from "./lib/hooks/useDelay";
+import { FinalMessage } from "./components/FinalMessage";
+import { QrCode } from "./components/QrCode";
 
 function App() {
   const [component, setComponent] = useState<Component>("start");
@@ -50,13 +52,21 @@ function App() {
           {component === "numberConfirmation" && (
             <>
               <PhoneChecker refs={arrRefs} />
-              <ClosePhoneChecker
-                onClick={handleClosePhoneCheckerClick}
-                ref={arrRefs[12]}
-              />
+              <div className='h-full flex flex-col justify-between items-end ml-auto'>
+                <ClosePhoneChecker
+                  onClick={handleClosePhoneCheckerClick}
+                  ref={arrRefs[12]}
+                />
+                <QrCode />
+              </div>
             </>
           )}
-          {component === "final" && <div>Final</div>}
+          {component === "final" && (
+            <>
+              <FinalMessage />
+              <QrCode />
+            </>
+          )}
         </ContentProvider>
         <BackgroundVideo play={play} />
       </ComponentContext.Provider>
