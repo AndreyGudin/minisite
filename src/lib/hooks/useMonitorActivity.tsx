@@ -22,7 +22,6 @@ export const useMonitorActivity = (): UseMonitorActivityType => {
       const secondsDif = Math.abs(
         new Date(lastActivity).getSeconds() - new Date().getSeconds()
       );
-      console.log("secondsDif", secondsDif);
       if (secondsDif >= 10) setActive(false);
     }, 1000);
   }, [monitor]);

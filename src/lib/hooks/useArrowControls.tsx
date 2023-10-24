@@ -53,7 +53,6 @@ export const useArrowControls = ({ arrRefs }: UseArrowControlsProps) => {
   }, [handlePressKey]);
 
   useEffect(() => {
-    // console.log(arrRefs);
     const next = arrRefs[pressed].current;
     if (next) next.focus();
   }, [arrRefs, pressed]);

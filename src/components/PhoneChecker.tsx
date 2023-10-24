@@ -60,7 +60,7 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
         <h2 className='text-[26px]'>Введите ваш номер мобильного телефона</h2>
         <PhoneInput value={phone} valid={valid} />
         <span className='text-[14px]'>
-          и с Вами свяжется наш менеждер для дальнейшей консультации
+          и с Вами свяжется наш менеджер для дальнейшей консультации
         </span>
         <PhoneKeyboard refs={refs} onClick={handleClick} />
         {valid ? (
