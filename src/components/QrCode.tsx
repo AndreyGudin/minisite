@@ -1,5 +1,6 @@
 import { memo } from "react";
 import type { FC } from "react";
+import qrCode from "../assets/qr-code.svg";
 
 export const QrCode: FC = memo(function QrCode() {
   return (
@@ -12,11 +13,7 @@ export const QrCode: FC = memo(function QrCode() {
         <br /> ДОПОЛНИТЕЛЬНОЙ
         <br /> ИНФОРМАЦИИ
       </span>
-      <img
-        className='w-[126px] h-[126px]'
-        src='./src/assets/qr-code.svg'
-        alt='Qr-code'
-      />
+      <img className='w-[126px] h-[126px]' src={qrCode} alt='Qr-code' />
     </div>
   );
 });

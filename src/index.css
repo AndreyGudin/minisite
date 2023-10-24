@@ -19,18 +19,23 @@
 }
 
 body {
-  position: relative;
   margin: 0;
   display: flex;
-  place-items: center;
-  width: 1280px;
-  height: 720px;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  height: 100vh;
   font-weight: 600;
 }
 
+video {
+  max-width: 1280px;
+}
+
 #root {
-  min-width: 100%;
-  min-height: 100%;
+  position: relative;
+  width: 1280px;
+  height: fit-content;
 }
 
 h1 {

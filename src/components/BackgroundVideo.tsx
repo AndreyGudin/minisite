@@ -1,6 +1,6 @@
 import { memo, useEffect, useRef } from "react";
 import type { FC } from "react";
-
+import Video from "../assets/video.mp4";
 interface BackgroundVideoProps {
   className?: string;
   play?: boolean;
@@ -21,11 +21,12 @@ export const BackgroundVideo: FC<BackgroundVideoProps> = memo(
     return (
       <div className={`${className} absolute top-0 left-0 z-10`}>
         <video
+          className='w-[1280px] h-[720px]'
           ref={videoRef}
           width={1280}
           height={720}
           id='background-video'
-          src='./src/assets/video.mp4'
+          src={Video}
           loop
           autoPlay
           muted
