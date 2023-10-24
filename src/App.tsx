@@ -17,7 +17,6 @@ function App() {
   const [currentPhone, setCurrentPhone] = useState("+7(___)___-__-__");
   const [valid, setValid] = useState(true);
   const [play, setPlay] = useState(true);
-  console.log("rerender");
   const arrRefs = new Array(13)
     .fill(null)
     .map(() => createRef<HTMLButtonElement>());
@@ -29,6 +28,8 @@ function App() {
     setCurrentPhone,
     valid,
     setValid,
+    play,
+    setPlay,
   };
   useArrowControls({ arrRefs });
 

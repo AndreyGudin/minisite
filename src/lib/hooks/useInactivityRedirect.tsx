@@ -5,9 +5,12 @@ import { ComponentContext } from "../context/componentContext";
 
 export const useInactivityRedirect = (component: Component) => {
   const { active } = useMonitorActivity();
-  const { setComponent } = useContext(ComponentContext);
+  const { setComponent, setPlay } = useContext(ComponentContext);
 
   useEffect(() => {
-    if (!active) setComponent(component);
-  }, [active, component, setComponent]);
+    if (!active) {
+      setComponent(component);
+      setPlay(true);
+    }
+  }, [active, component, setComponent, setPlay]);
 };

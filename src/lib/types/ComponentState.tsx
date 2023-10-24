@@ -5,6 +5,8 @@ export interface ComponentState {
   setCurrentPhone: (value: string) => void;
   valid: boolean;
   setValid: (value: boolean) => void;
+  play: boolean;
+  setPlay: (value: boolean) => void;
 }
 
 export type Component = "start" | "banner" | "numberConfirmation" | "final";
