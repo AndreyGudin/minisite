@@ -1,6 +1,6 @@
 import { memo } from "react";
 import type { FC } from "react";
-
+import qrCode from "../assets/qr-code.svg";
 interface BannerProps {
   className?: string;
   onClick?: () => void;
@@ -18,11 +18,7 @@ export const Banner: FC<BannerProps> = memo(function Banner({
         ИСПОЛНИТЕ МЕЧТУ ВАШЕГО МАЛЫША!
         <br /> ПОДАРИТЕ ЕМУ СОБАКУ!
       </span>
-      <img
-        className='w-[126px] h-[126px]'
-        src='./src/assets/qr-code.svg'
-        alt='Qr-code'
-      />
+      <img className='w-[126px] h-[126px]' src={qrCode} alt='Qr-code' />
       <span className='text-sm text-center leading-4'>
         Сканируйте QR-код
         <br /> или нажмите ОК
