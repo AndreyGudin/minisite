@@ -14,5 +14,5 @@ export const useInactivityRedirect = (component: Component) => {
       setPlay(true);
       setCurrentPhone("+7(___)___-__-__");
     }
-  }, [active, component, setComponent, setPlay]);
+  }, [active, component, setComponent, setCurrentPhone, setPlay]);
 };
