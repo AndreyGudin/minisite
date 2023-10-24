@@ -43,6 +43,7 @@ function App() {
   const handleClosePhoneCheckerClick = useCallback(() => {
     setComponent("banner");
     setPlay(true);
+    setCurrentPhone("+7(___)___-__-__");
   }, []);
 
   return (

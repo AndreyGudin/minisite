@@ -35,21 +35,22 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
     const handleValidate = () => {
       const phoneToValidate = currentPhone
         .split("")
-        .map((c, i) => {
+        .map((c) => {
           const temp = Number(c);
-          if (!Number.isNaN(temp) && i !== 1) {
+          if (!Number.isNaN(temp)) {
             return c;
           }
           return "";
         })
         .join("");
       fetch(
-        `http://apilayer.net/api/validate?access_key=fb5b33e5f65657455a579b9d41effee4&number=${phoneToValidate}&country_code=RU&format=1`
+        `https://api.numlookupapi.com/v1/validate/+${phoneToValidate}?apikey=num_live_uNUwMhW6DDfFIW3DIYLUsxGexQfe27pwfO5MLoM9`
       )
         .then((res) => res.json())
         .then((result: PhoneCheckingResponse) => {
+          console.log(result);
           setValid(result.valid);
-          if (valid) setComponent("final");
+          if (result.valid) setComponent("final");
         });
     };
 
