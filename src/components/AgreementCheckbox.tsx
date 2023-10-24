@@ -1,6 +1,6 @@
 import { memo } from "react";
 import type { FC } from "react";
-import { Checkbox } from "./checkbox";
+import { Checkbox } from "./Checkbox";
 
 interface AgreementCheckboxProps {
   className?: string;

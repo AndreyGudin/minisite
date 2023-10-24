@@ -8,4 +8,6 @@ export const ComponentContext = createContext<ComponentState>({
   setCurrentPhone: () => {},
   valid: true,
   setValid: () => {},
+  play: true,
+  setPlay: () => {},
 });
