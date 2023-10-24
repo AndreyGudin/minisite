@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect, useState } from "react";
+import { memo, useContext, useState } from "react";
 import type { FC } from "react";
 import { PhoneInput } from "./PhoneInput";
 import { PhoneKeyboard } from "./PhoneKeyboard";
@@ -6,7 +6,7 @@ import { AgreementCheckbox } from "./AgreementCheckbox";
 import { ComponentContext } from "../lib/context/componentContext";
 import { PhoneCheckingResponse } from "../lib/types/PhoneCheckingResponse";
 import { usePhoneInputsControls } from "../lib/hooks/usePhoneInputsControls";
-import { useMonitorActivity } from "../lib/hooks/useMonitorActivity";
+import { useInactivityRedirect } from "../lib/hooks/useInactivityRedirect";
 
 interface PhoneCheckerProps {
   className?: string;
@@ -19,9 +19,10 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
     const [agreed, setAgreed] = useState(false);
     const { currentPhone, valid, setValid, setComponent } =
       useContext(ComponentContext);
-    const { active } = useMonitorActivity();
 
     usePhoneInputsControls({ callback: setPhone });
+
+    useInactivityRedirect("banner");
 
     const handleClick = (value: string) => {
       setPhone((state) => state + value);
@@ -51,10 +52,6 @@ export const PhoneChecker: FC<PhoneCheckerProps> = memo(
           if (valid) setComponent("final");
         });
     };
-
-    useEffect(() => {
-      if (!active) setComponent("banner");
-    }, [active, setComponent]);
 
     return (
       <div
